@@ -2,19 +2,20 @@ var github = require('octonode'); // github 3rd-party node.js api by pksunkara (
 var token = '035ad9db4fae733053362474db2054846edbdcc6'; // user-generated token
 
 // build client
-var client = github.client(token);
-client.get('/user', {}, function (err, status, data, headers) {
+var client = github.client();
+client.get('/users/tgknight', {}, function (err, status, data, headers) {
 	if (err) console.error("buildclienterr" + err);
 });
 
 // specify the desired user to view his/her github info
-var user = client.user(process.argv[2]);
+var loginid = 'tgknight';
+var user = client.user(loginid);
 
 // get user info
 user.info(function (err, data, headers) {
 	if (err) console.error("userinfoerr: " + err);
 	else {
-		console.log("User info of " + process.argv[2]);
+		console.log("User info of " + loginid);
 		console.log("Name: " + ((data.name !== "") ? data.name : "N/A"));
 		console.log("Company: " + ((data.company !== "") ? data.company : "N/A"));
 		console.log("Blog: " + ((data.blog !== "") ? data.blog : "N/A"));
@@ -27,7 +28,7 @@ user.info(function (err, data, headers) {
 user.followers(function (err, data, headers) {
 	if (err) console.error("followererr: " + err);
 	else {
-		console.log("Followers of " + process.argv[2]);
+		console.log("Followers of " + loginid);
 		if (data.length == 0)
 			console.log("This user doesn't have any followers.");
 		else {
@@ -43,7 +44,7 @@ user.followers(function (err, data, headers) {
 user.repos(function (err, data, headers) {
 	if (err) console.error("repoerr: " + err);
 	else {
-		console.log("Repositories of " + process.argv[2]);
+		console.log("Repositories of " + loginid);
 		if (data.lenght == 0)
 			console.log("This user doesn't have any repositories.");
 		else {
