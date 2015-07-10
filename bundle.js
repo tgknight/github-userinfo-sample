@@ -1,15 +1,15 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var github = require('octonode'); // github 3rd-party node.js api by pksunkara (https://github.com/pksunkara/octonode)
-var token = '035ad9db4fae733053362474db2054846edbdcc6'; // user-generated token
+// var token = '035ad9db4fae733053362474db2054846edbdcc6'; // user-generated token
 
 // build client
 var client = github.client();
-client.get('/users/tgknight', {}, function (err, status, data, headers) {
-	if (err) console.error("buildclienterr" + err);
-});
+// client.get('/users/tgknight', {}, function (err, status, data, headers) {
+// 	if (err) console.error("buildclienterr" + err);
+// });
 
 // specify the desired user to view his/her github info
-var loginid = 'tgknight';
+var loginid = 'pawitp';
 var user = client.user(loginid);
 
 // get user info
@@ -22,6 +22,7 @@ user.info(function (err, data, headers) {
 		console.log("Blog: " + ((data.blog !== "") ? data.blog : "N/A"));
 		console.log("Location: " + ((data.location !== "") ? data.location : "N/A"));
 		console.log("Bio: " + ((data.bio !== null) ? data.bio : "N/A"));
+		console.log("Avatar: " + data.avatar_url);
 	}
 });
 
@@ -36,6 +37,7 @@ user.followers(function (err, data, headers) {
 			for (var i = 0; i < data.length; i++) {
 				console.log("Name: " + data[i].login);
 				console.log("GitHub: " + data[i].html_url);
+				console.log("Avatar: " + data[i].avatar_url);
 			}
 		}
 	}

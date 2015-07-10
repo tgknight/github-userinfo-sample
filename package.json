@@ -1,0 +1,19 @@
+{
+  "name": "github-userinfo-sample",
+  "version": "1.0.0",
+  "description": "[Taskworld Code Challenge] A web application for viewing a github user info using github API and React",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgknight/github-userinfo-sample.git"
+  },
+  "author": "Thanapat Bhunnachet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tgknight/github-userinfo-sample/issues"
+  },
+  "homepage": "https://github.com/tgknight/github-userinfo-sample#readme"
+}
