@@ -1,18 +1,20 @@
 var GeneralInfo = React.createClass({
 	render: function() {
 		return (
-			<div className="generalInfo">
-				<img src={this.props.info.avatar} />
-				<h2>
-					<a href={this.props.info.url}>
-						{this.props.info.login}
-					</a>
-				</h2>
-				<br/>
-				<b>Company: </b> {this.props.info.company} <br/>
-				<b>Blog: </b> {this.props.info.blog} <br/>
-				<b>Location: </b> {this.props.info.location} <br/>
-				<b>Bio: </b> {this.props.info.bio} <br/>
+			<div className="row">
+				<div className="col-sm-4 col-xs-12">
+					<img src={this.props.info.avatar} className="img-circle" id="user-avatar"/>
+				</div>
+				<div className="col-xs-12 col-sm-8">
+					<h2>
+						<a href={this.props.info.url}>{this.props.info.login}</a>
+					</h2>
+					<br/>
+					<b>Company: </b> {this.props.info.company} <br/>
+					<b>Blog: </b> <a href={this.props.info.blog}>{this.props.info.blog}</a> <br/>
+					<b>Location: </b> {this.props.info.location} <br/>
+					<b>Bio: </b> {this.props.info.bio} <br/>
+				</div>
 			</div>
 		);
 	}
@@ -22,7 +24,7 @@ var FollowerInfo = React.createClass({
 	render: function() {
 		return (
 			<li>
-				<img src={this.props.follower.avatar} />
+				<img src={this.props.follower.avatar} className="img-circle" id="follower-avatar" />
 				<a href={this.props.follower.url}>{this.props.follower.login}</a>
 			</li>
 		);
@@ -50,19 +52,18 @@ var UserInfo = React.createClass({
 			repositories.push(<RepositoryInfo repository={repository} key={repository.name} />);
 		});
 		return (
-			<div className="userInfo">
+			<div className="row">
 				<GeneralInfo info={this.props.user} />
-				<div className="followerInfo">
-					<h4>Followers</h4>
-					<ul>
-						{followers}
-					</ul>
-				</div>
-				<div className="repositoryInfo">
-					<h4>Repositories</h4>
-					<ul>
-						{repositories}
-					</ul>
+				<div className="row">
+					<div className="col-xs-12 col-sm-4" />
+					<div className="col-xs-12 col-sm-4">
+						<h4>Followers</h4>
+						<ul> {followers} </ul>
+					</div>
+					<div className="col-xs-12 col-sm-4">
+						<h4>Repositories</h4>
+						<ul> {repositories} </ul>
+					</div>
 				</div>
 			</div>
 		);
@@ -73,10 +74,16 @@ var UserInfo = React.createClass({
 var SearchBar = React.createClass({
 	render: function() {
 		return (
-			<form>
-                <input type="text" placeholder="Github username" />
-                <input type="submit"></input>
-            </form>
+			<div className="row" id="searchbar">
+				<form className="form-inline" role="form">
+					<div className="form-group">
+						<label className="sr-only" htmlFor="text"></label>
+          		  		<input type="text" className="form-control" placeholder="Github username" />
+						<label className="sr-only" htmlFor="sumbit"></label>
+        		  		<input type="submit" className="btn btn-default btn-md" value="SHOW" />
+					</div>
+				</form>
+			</div>
 		);
 	}
 });
@@ -84,7 +91,7 @@ var SearchBar = React.createClass({
 var GithubUserInfo = React.createClass({
 	render: function() {
 		return (
-			<div className="githubUserInfo">
+			<div className="container" id="githubUserInfo">
 				<SearchBar />
 				<UserInfo user={this.props.query} />
 			</div>
